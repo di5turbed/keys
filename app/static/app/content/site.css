@@ -1,0 +1,123 @@
+﻿:root {
+  --bg-color: #0b0c10;
+  --panel-bg: #1f2833;
+  --text-main: #c5c6c7;
+  --accent-cyan: #66fcf1;
+  --accent-green: #45a29e;
+  --glow-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+}
+
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-main) !important;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  padding-top: 70px !important; /* Отступ под шапку */
+  margin: 0;
+}
+
+/* Фикс для навигации */
+.navbar-inverse {
+  background-color: var(--panel-bg) !important;
+  border: none !important;
+}
+
+.navbar-brand, .navbar-nav > li > a {
+  color: var(--accent-cyan) !important;
+  text-shadow: var(--glow-shadow);
+}
+
+/* Контейнеры */
+.block {
+  background-color: var(--panel-bg) !important;
+  border: 1px solid var(--accent-cyan) !important;
+  border-radius: 12px !important;
+  padding: 25px !important;
+  margin-bottom: 20px;
+}
+
+.header {
+  color: var(--accent-cyan) !important;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.auth-card {
+    background: rgba(31, 40, 51, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--accent-cyan) !important;
+    box-shadow: 0 0 20px rgba(102, 252, 241, 0.2), inset 0 0 10px rgba(102, 252, 241, 0.1) !important;
+    padding: 40px !important;
+    max-width: 500px !important;
+    width: 100%;
+}
+
+.auth-card h2 {
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+/* Стилизация стандартных полей Django внутри форм */
+.auth-card input[type="text"], 
+.auth-card input[type="password"],
+.auth-card input[type="email"] {
+    background: rgba(11, 12, 16, 0.6) !important;
+    border: 1px solid var(--accent-green) !important;
+    color: var(--accent-cyan) !important;
+    border-radius: 4px !important;
+    transition: all 0.3s ease;
+}
+
+.auth-card input:focus {
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 10px var(--accent-cyan) !important;
+    outline: none;
+}
+
+.auth-card label {
+    color: var(--accent-green);
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Эффект свечения для всего слайдера */
+#myCarousel {
+    box-shadow: 0 0 30px rgba(102, 252, 241, 0.2);
+    border-radius: 15px;
+}
+
+/* Настройка текста внутри слайдов */
+.carousel-caption h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Стилизация стрелок управления */
+.carousel-control {
+    background-image: none !important; /* Убираем стандартный градиент Bootstrap */
+    width: 5%;
+}
+
+.carousel-control:hover {
+    color: var(--accent-cyan) !important;
+}
+
+/* Стилизация точек (индикаторов) */
+.carousel-indicators li {
+    border-color: var(--accent-cyan);
+}
+
+.carousel-indicators .active {
+    background-color: var(--accent-cyan);
+}

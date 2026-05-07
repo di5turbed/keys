@@ -1,0 +1,20 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h1 class="header">{{ category.name }}</h1>
+<div class="row">
+    {% for item in items %}
+    <div class="col-md-6">
+        <div class="block" style="margin-bottom: 20px; display: flex; gap: 20px;">
+            <img src="{{ item.image.url }}" style="width: 150px; border-radius: 5px;">
+            <div>
+                <a href="{% url 'product_details' product_id=item.id %}">
+                    <h3 style="color: var(--accent-cyan); margin-top: 0;">{{ item.name }}</h3>
+                </a>
+                <p style="background: none; text-indent: 0; padding: 0;">{{ item.short_description }}</p>
+                <div style="color: gold; font-weight: bold; font-size: 1.2em;">{{ item.price }} ₽</div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

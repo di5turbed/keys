@@ -1,0 +1,16 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h1 class="header">Категории товаров</h1>
+<div class="row">
+    {% for cat in categories %}
+    <div class="col-md-4">
+        <a href="{% url 'category_items' category_id=cat.id %}" style="text-decoration: none;">
+            <div class="block" style="text-align: center; margin-bottom: 20px;">
+                <h2 style="color: var(--accent-cyan);">{{ cat.name }}</h2>
+                <p style="text-indent: 0;">{{ cat.description }}</p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

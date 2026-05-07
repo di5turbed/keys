@@ -1,0 +1,47 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+
+<div class="block">
+    {% if form != None %}
+        <p id="p1">Пожалуйста, ответьте на несколько вопросов, чтобы мы могли стать лучше.</p>
+        
+        <form action="" method="post" class="form-horizontal">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="form-group" style="margin-left: 20px; color: white;">
+                    <label class="control-label"><b>{{ field.label }}</b></label>
+                    <div>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="alert alert-danger">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <div class="nav-link">
+                <input type="submit" value="Отправить отзыв" class="button-link" />
+            </div>
+        </form>
+
+    {% else %}
+        <h2 style="color: var(--accent-cyan);">Спасибо за ваш отзыв! 🎉</h2>
+        <p>Мы получили следующие данные:</p>
+        <ul class="links-list" style="list-style: none;">
+            <li><strong>Имя:</strong> {{ data.name }}</li>
+            <li><strong>Город:</strong> {{ data.city }}</li>
+            <li><strong>Оценка сайта:</strong> {{ data.score }}</li>
+            <li><strong>Источник:</strong> {{ data.source }}</li>
+            <li><strong>Сообщение:</strong> {{ data.message }}</li>
+        </ul>
+        <div class="nav-link">
+            <a href="{% url 'home' %}" class="button-link">Вернуться на главную</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+135246767

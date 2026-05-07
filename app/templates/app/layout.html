@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - КиберКлючи</title> {% load static %}
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <link rel="icon" href="{% static 'app/content/favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'app/content/favicon.ico' %}" type="image/x-icon">
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid" style="padding-left: 30px; padding-right: 30px;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a href="{% url 'home' %}" class="navbar-brand">
+                    <img src="{% static 'app/content/logo.jpg' %}" alt="logo" height="30" style="display:inline-block; margin-top: -5px; margin-right: 8px; border-radius: 4px; border: 1px solid var(--accent-cyan);" />
+                    КиберКлючи
+                </a>
+            </div>
+            
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'contact' %}">Контакты</a></li>
+                    <li><a href="{% url 'videopost' %}">Видео</a></li>
+                    {% if user.is_superuser %}
+                        <li><a href="{% url 'newpost' %}">Добавить пост</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'blog' %}">Блог</a></li>
+                    <li><a href="{% url 'catalog' %}">Каталог</a></li>
+                    {% if user.is_superuser %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Админ-панель <b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="background: var(--panel-bg);">
+                                <li><a href="{% url 'new_category' %}" style="color: var(--accent-cyan);">+ Добавить категорию</a></li>
+                                <li><a href="{% url 'new_product' %}" style="color: var(--accent-cyan);">+ Добавить товар</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li><a href="{% url 'pool' %}">Обратная связь</a></li>
+                    <li><a href="{% url 'links' %}">Полезные ссылки</a></li>
+                    {% if not user.is_authenticated %}
+                        <li><a href="{% url 'registration' %}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+                {% include 'app/loginpartial.html' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        {% block content %}{% endblock %}
+        <hr/>
+        <footer>
+            <p>&copy; {{ year }} - КиберКлючи | Магазин цифровых товаров</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ post_1.title }}</h1>
+<div class="block">
+    {% if post_1.image and post_1.image.url != '/media/temp.jpg' %}
+        <img src="{{ post_1.image.url }}" alt="Картинка статьи блога" style="width: 100%; border-radius: 15px; margin-bottom: 20px;" />
+    {% endif %}
+    
+    <div style="margin-top: 20px;">
+        {{ post_1.content|linebreaksbr }}
+    </div>
+
+    <hr style="border-color: var(--accent-cyan);">
+
+    <h2 style="color: var(--accent-cyan);">Комментарии ({{ comments.count }})</h2>
+    
+    {% if user.is_authenticated %}
+        <div class="comment-form" style="margin-bottom: 30px;">
+            <h3 style="color: var(--accent-green);">Оставить комментарий</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div style="color: white;">{{ form.as_p }}</div>
+                <button type="submit" class="button-link" style="border: none;">Отправить</button>
+            </form>
+        </div>
+    {% else %}
+        <p id="p1">Пожалуйста, <a href="{% url 'login' %}" style="color: gold;">войдите</a>, чтобы оставить комментарий.</p>
+    {% endif %}
+
+    {% for comment in comments %}
+        <div class="block" style="background: rgba(0,0,0,0.3); border-color: var(--accent-green); margin-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between;">
+                <strong style="color: var(--accent-cyan);">{{ comment.author }}</strong>
+                <small style="color: var(--accent-green);">{{ comment.date|date:"d.m.Y H:i" }}</small>
+            </div>
+            <p style="text-indent: 0; background: none; padding: 5px 0;">{{ comment.text|linebreaksbr }}</p>
+        </div>
+    {% empty %}
+        <p>Комментариев пока нет. Будьте первым!</p>
+    {% endfor %}
+</div>
+{% endblock %}

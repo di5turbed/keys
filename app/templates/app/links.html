@@ -1,0 +1,32 @@
+﻿{% extends "app/layout.html" %}
+{% load static %}
+
+{% block content %}
+    <h1 class="header">Полезные ссылки на игровые ресурсы</h1>
+    
+    <div class="block">
+        <p id="p1">
+            Здесь вы найдёте проверенные ресурсы для покупки игр, отслеживания скидок 
+            и активации ключей. Переходите по ссылкам ниже:
+        </p>
+        
+        <ul class="links-list">
+            <li>
+                <a href="https://store.steampowered.com/" target="_blank">Steam</a>
+                — крупнейшая платформа цифровой дистрибуции игр.
+            </li>
+            <li>
+                <a href="https://www.epicgames.com/" target="_blank">Epic Games Store</a>
+                — каждый месяц раздают бесплатные игры.
+            </li>
+            <li>
+                <a href="https://www.ea.com/ea-app" target="_blank">EA App (Origin)</a>
+                — платформа от Electronic Arts.
+            </li>
+        </ul>
+        
+        <div class="nav-link">
+            <a href="{% url 'home' %}" class="button-link">← Вернуться на главную</a>
+        </div>
+    </div>
+{% endblock %}

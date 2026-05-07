@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+
+{% for post in posts %}
+    <div class="block" style="margin-bottom: 30px;">
+        
+        {% if post.image and post.image.url != '/media/temp.jpg' %}
+            <img src="{{ post.image.url }}" alt="Обложка статьи" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+        {% endif %}
+
+        <h2 style="color: var(--accent-cyan); margin-top: 0;">{{ post.title }}</h2>
+        <h4 style="color: var(--accent-green);">Опубликовано: {{ post.posted|date:"d.m.Y H:i" }}</h4>
+        
+        <p id="p1" style="background: rgba(0,0,0,0.2); border-left: 3px solid var(--accent-cyan);">
+            {{ post.description }}
+        </p>
+        
+        <div class="nav-link" style="text-align: left; margin: 0;">
+            <a href="{% url 'blogpost' parametr=post.id %}" class="button-link">Читать далее →</a>
+        </div>
+    </div>
+{% empty %}
+    <p>В блоге пока нет статей.</p>
+{% endfor %}
+
+{% endblock %}

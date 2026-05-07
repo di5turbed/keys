@@ -1,0 +1,61 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %} <div id="myCarousel" class="carousel slide block" data-ride="carousel" data-interval="3000" style="padding: 0; overflow: hidden; border: 2px solid var(--accent-cyan); margin-bottom: 40px;">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="{% static 'app/content/banner1.jpg' %}" alt="Горячие новинки" class="img-responsive" style="width: 100%;">
+            <div class="carousel-caption" style="background: rgba(0,0,0,0.6); border-radius: 10px; padding: 20px;">
+                <h2 style="color: var(--accent-cyan); text-shadow: var(--glow-shadow);">ГОРЯЧИЕ НОВИНКИ</h2>
+                <p>Все мировые релизы уже доступны в нашем каталоге.</p>
+                <a class="button-link" href="{% url 'blog' %}" style="margin-top: 10px;">Смотреть список</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="{% static 'app/content/banner2.jpg' %}" alt="Распродажа" class="img-responsive" style="width: 100%;">
+            <div class="carousel-caption" style="background: rgba(0,0,0,0.6); border-radius: 10px; padding: 20px;">
+                <h2 style="color: gold; text-shadow: 0 0 10px gold;">КИБЕР-СКИДКИ ДО 90%</h2>
+                <p>Успей забрать любимые игры по лучшим ценам сезона.</p>
+                <a class="button-link" href="{% url 'links' %}" style="margin-top: 10px;">Найти выгоду</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="{% static 'app/content/banner3.jpg' %}" alt="Поддержка" class="img-responsive" style="width: 100%;">
+            <div class="carousel-caption" style="background: rgba(0,0,0,0.6); border-radius: 10px; padding: 20px;">
+                <h2 style="color: var(--accent-green); text-shadow: 0 0 10px var(--accent-green);">МГНОВЕННАЯ ДОСТАВКА</h2>
+                <p>Ключ приходит на почту сразу после оплаты. Работаем 24/7.</p>
+                <a class="button-link" href="{% url 'contact' %}" style="margin-top: 10px;">Техподдержка</a>
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Назад</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Вперед</span>
+    </a>
+</div>
+
+<div class="main-block">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="header">Добро пожаловать в КиберКлючи</h1>
+            <div class="block">
+                <p id="p1">Мы предоставляем только лицензионные ключи с гарантией активации.</p>
+                <p>Присоединяйтесь к тысячам довольных игроков по всему миру!</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1 class="header">Видео-обзоры игр</h1>
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <h3>Трейлер Battlefield V</h3>
+            <video width="100%" poster="{% static 'app/content/poster1.jpg' %}" controls>
+                <source src="/media/video1.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="block">
+            <h3>Обзор новинок месяца</h3>
+            <video width="100%" poster="{% static 'app/content/poster2.jpg' %}" controls>
+                <source src="/media/video2.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+    </div>
+</div>
+{% endblock %}

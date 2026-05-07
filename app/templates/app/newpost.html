@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <div style="color: white;">
+            {{ form.as_p }}
+        </div>
+        <div class="nav-link">
+            <button type="submit" class="button-link">Опубликовать статью</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
