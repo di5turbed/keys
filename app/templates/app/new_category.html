@@ -1,0 +1,16 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    <form method="POST">
+        {% csrf_token %}
+        <div style="color: white;">
+            {{ form.as_p }}
+        </div>
+        <div class="nav-link" style="margin-top: 20px;">
+            <button type="submit" class="button-link" style="border: none;">Добавить категорию</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

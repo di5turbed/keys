@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ product.name }}</h1>
+
+<div class="row">
+    <div class="col-md-5">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; border-radius: 10px; border: 2px solid var(--accent-cyan); box-shadow: 0 0 15px rgba(102, 252, 241, 0.2);">
+    </div>
+    
+    <div class="col-md-7">
+        <div class="block">
+            <h3 style="color: var(--accent-green); margin-top: 0;">Категория: {{ product.category.name }}</h3>
+            <h2 style="color: gold; font-weight: bold;">Цена: {{ product.price }} ₽</h2>
+            
+            <hr style="border-color: rgba(102, 252, 241, 0.2);" />
+            
+            <div style="color: var(--text-main); font-size: 1.1em; line-height: 1.6;">
+                {{ product.full_description|linebreaksbr }}
+            </div>
+            
+            <div class="nav-link" style="margin-top: 30px;">
+                <a href="{% url 'category_items' category_id=product.category.id %}" class="button-link">← Назад к списку</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
