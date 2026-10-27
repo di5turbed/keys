@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    <a href="{% url 'new_product' %}" class="button-link btn-gold">+ Добавить товар</a>
+    <div class="table-scroll" style="margin-top: 20px;">
+    <table class="shop-table">
+        <thead><tr><th></th><th>Название</th><th>Категория</th><th>Цена</th><th></th></tr></thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td><img src="{{ product.image.url }}" alt="{{ product.name }}"></td>
+                <td><a href="{% url 'product_details' product_id=product.id %}">{{ product.name }}</a></td>
+                <td>{{ product.category.name }}</td>
+                <td>{{ product.price }} ₽</td>
+                <td style="white-space: nowrap;">
+                    <a href="{% url 'product_edit' product_id=product.id %}" class="button-link btn-sm-link">Изменить</a>
+                    <a href="{% url 'product_delete' product_id=product.id %}" class="button-link btn-sm-link btn-danger-link">Удалить</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="5">Товаров нет.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}

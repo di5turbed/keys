@@ -1,0 +1,20 @@
+<div class="table-scroll">
+<table class="shop-table">
+    <thead>
+        <tr><th>Товар</th><th>Цена</th><th>Кол-во</th><th>Сумма</th></tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        <tr>
+            <td><a href="{% url 'product_details' product_id=item.product.id %}">{{ item.product.name }}</a></td>
+            <td>{{ item.price|default:item.product.price }} ₽</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.total }} ₽</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr><td colspan="3" style="text-align: right;">Итого:</td><td>{{ total }} ₽</td></tr>
+    </tfoot>
+</table>
+</div>

@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    <a href="{% url 'manager_create' %}" class="button-link btn-gold">+ Зарегистрировать менеджера</a>
+    <div class="table-scroll" style="margin-top: 20px;">
+    <table class="shop-table">
+        <thead><tr><th>Логин</th><th>Имя</th><th>E-mail</th><th>Роль</th><th>Зарегистрирован</th><th></th></tr></thead>
+        <tbody>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row.user.username }}</td>
+                <td>{{ row.user.first_name }}</td>
+                <td>{{ row.user.email }}</td>
+                <td><span class="role-tag">{{ row.role }}</span></td>
+                <td>{{ row.user.date_joined|date:"d.m.Y" }}</td>
+                <td><a href="{% url 'user_delete' user_id=row.user.id %}" class="button-link btn-sm-link btn-danger-link">Удалить</a></td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="6">Пользователей нет.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <p style="font-size: 12px; margin-top: 15px; text-indent: 0;">Администраторы в списке не показываются и через этот интерфейс не удаляются.</p>
+</div>
+{% endblock %}

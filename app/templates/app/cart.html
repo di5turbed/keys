@@ -1,0 +1,49 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    {% if items %}
+    <div class="table-scroll">
+    <table class="shop-table">
+        <thead>
+            <tr><th></th><th>Товар</th><th>Цена</th><th>Количество</th><th>Сумма</th><th></th></tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td><img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"></td>
+                <td><a href="{% url 'product_details' product_id=item.product.id %}">{{ item.product.name }}</a></td>
+                <td>{{ item.product.price }} ₽</td>
+                <td>
+                    <form method="post" action="{% url 'cart_update' item_id=item.id %}" class="inline-form">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99" class="qty-input">
+                        <button type="submit" class="button-link btn-sm-link">Обновить</button>
+                    </form>
+                </td>
+                <td>{{ item.total }} ₽</td>
+                <td>
+                    <form method="post" action="{% url 'cart_remove' item_id=item.id %}" class="inline-form">
+                        {% csrf_token %}
+                        <button type="submit" class="button-link btn-sm-link btn-danger-link">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr><td colspan="4" style="text-align: right;">Итого:</td><td colspan="2">{{ total }} ₽</td></tr>
+        </tfoot>
+    </table>
+    </div>
+    <div class="actions">
+        <a href="{% url 'checkout' %}" class="button-link btn-gold">Оформить заказ</a>
+        <a href="{% url 'catalog' %}" class="button-link">Продолжить покупки</a>
+    </div>
+    {% else %}
+        <p>Корзина пуста.</p>
+        <a href="{% url 'catalog' %}" class="button-link">Перейти в каталог</a>
+    {% endif %}
+</div>
+{% endblock %}

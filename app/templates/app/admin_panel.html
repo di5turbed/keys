@@ -1,0 +1,49 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="row">
+    <div class="col-md-4 col-sm-6">
+        <div class="block stat-tile">
+            <div class="stat-value">{{ stats.categories }}</div>
+            <p style="text-indent: 0;">категорий</p>
+            <a href="{% url 'admin_categories' %}" class="button-link btn-sm-link">Управлять</a>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="block stat-tile">
+            <div class="stat-value">{{ stats.products }}</div>
+            <p style="text-indent: 0;">товаров</p>
+            <a href="{% url 'admin_products' %}" class="button-link btn-sm-link">Управлять</a>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="block stat-tile">
+            <div class="stat-value">{{ stats.news }}</div>
+            <p style="text-indent: 0;">новостей</p>
+            <a href="{% url 'admin_news' %}" class="button-link btn-sm-link">Управлять</a>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="block stat-tile">
+            <div class="stat-value">{{ stats.clients }}</div>
+            <p style="text-indent: 0;">клиентов</p>
+            <a href="{% url 'admin_users' %}" class="button-link btn-sm-link">Пользователи</a>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="block stat-tile">
+            <div class="stat-value">{{ stats.managers }}</div>
+            <p style="text-indent: 0;">менеджеров</p>
+            <a href="{% url 'manager_create' %}" class="button-link btn-sm-link">+ Менеджер</a>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="block stat-tile">
+            <div class="stat-value">{{ stats.orders }}</div>
+            <p style="text-indent: 0;">заказов</p>
+            <a href="{% url 'admin:app_order_changelist' %}" class="button-link btn-sm-link">В Django admin</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

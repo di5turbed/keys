@@ -1,0 +1,38 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    {% if orders %}
+    <div class="table-scroll">
+    <table class="shop-table">
+        <thead>
+            <tr><th>№</th><th>Дата</th><th>Товары</th><th>Сумма</th><th>Статус</th><th></th></tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.created|date:"d.m.Y H:i" }}</td>
+                <td>{% for item in order.items.all %}{{ item.product.name }} ×{{ item.quantity }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                <td>{{ order.total }} ₽</td>
+                <td><span class="status status-{{ order.status }}">{{ order.get_status_display }}</span></td>
+                <td style="white-space: nowrap;">
+                    <a href="{% url 'order_detail' order_id=order.id %}" class="button-link btn-sm-link">Открыть</a>
+                    {% if order.is_editable %}
+                        <a href="{% url 'order_edit' order_id=order.id %}" class="button-link btn-sm-link">Изменить</a>
+                        <a href="{% url 'order_delete' order_id=order.id %}" class="button-link btn-sm-link btn-danger-link">Удалить</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <p style="font-size: 12px; margin-top: 15px; text-indent: 0;">Изменить или удалить можно только заказ в статусе «Новый» — пока его не взял в работу менеджер.</p>
+    {% else %}
+        <p>У вас пока нет заказов.</p>
+        <a href="{% url 'catalog' %}" class="button-link">Перейти в каталог</a>
+    {% endif %}
+</div>
+{% endblock %}

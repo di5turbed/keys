@@ -121,3 +121,78 @@ body {
 .carousel-indicators .active {
     background-color: var(--accent-cyan);
 }
+
+/* ---------- Интернет-магазин: общие элементы ---------- */
+a { color: var(--accent-cyan); }
+a:hover, a:focus { color: #fff; }
+
+.dropdown-menu { background: var(--panel-bg) !important; border: 1px solid var(--accent-green) !important; }
+.dropdown-menu > li > a { color: var(--accent-cyan) !important; }
+.dropdown-menu > li > a:hover { background: rgba(102, 252, 241, 0.12) !important; }
+.dropdown-menu .divider { background-color: var(--accent-green) !important; }
+.navbar-inverse .navbar-nav > .open > a { background: rgba(102, 252, 241, 0.12) !important; }
+
+.cart-badge { background: gold !important; color: #000 !important; text-shadow: none; }
+.role-tag {
+    display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 10px;
+    border: 1px solid var(--accent-green); color: var(--accent-cyan); font-size: 11px;
+}
+
+.button-link {
+    display: inline-block; padding: 8px 18px; border-radius: 6px; cursor: pointer;
+    background: transparent; border: 1px solid var(--accent-cyan) !important;
+    color: var(--accent-cyan) !important; text-decoration: none !important;
+    transition: all .2s ease;
+}
+.button-link:hover { background: var(--accent-cyan); color: var(--bg-color) !important; box-shadow: var(--glow-shadow); }
+.button-link.btn-gold { border-color: gold !important; color: gold !important; }
+.button-link.btn-gold:hover { background: gold; color: #000 !important; }
+.button-link.btn-danger-link { border-color: #ff6b6b !important; color: #ff6b6b !important; }
+.button-link.btn-danger-link:hover { background: #ff6b6b; color: #000 !important; }
+.button-link.btn-sm-link { padding: 4px 10px; font-size: 12px; }
+.inline-form { display: inline; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+.site-message { padding: 12px 18px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--accent-green); background: rgba(69, 162, 158, 0.15); color: #fff; }
+.site-message-error { border-color: #ff6b6b; background: rgba(255, 107, 107, 0.15); }
+
+/* Таблицы (корзина, заказы, админка) */
+.table-scroll { overflow-x: auto; }
+.shop-table { width: 100%; border-collapse: collapse; }
+.shop-table th, .shop-table td { padding: 10px; border-bottom: 1px solid rgba(102, 252, 241, 0.15); vertical-align: middle; }
+.shop-table th { color: var(--accent-green); text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+.shop-table tfoot td { color: gold; font-weight: bold; font-size: 1.15em; border-bottom: none; }
+.shop-table img { width: 56px; height: 56px; object-fit: cover; border-radius: 6px; }
+.qty-input { width: 64px; padding: 4px; background: rgba(11,12,16,.6); border: 1px solid var(--accent-green); color: var(--accent-cyan); }
+
+.status { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 12px; border: 1px solid; }
+.status-new { color: gold; }
+.status-processing { color: var(--accent-cyan); }
+.status-done { color: #6ee36e; }
+.status-canceled { color: #ff6b6b; }
+
+/* Формы */
+.form-control { background: rgba(11, 12, 16, 0.6) !important; border: 1px solid var(--accent-green) !important; color: var(--accent-cyan) !important; }
+.form-page label { color: var(--accent-green); display: block; }
+.form-page p { text-indent: 0 !important; background: none !important; padding: 0 !important; }
+.form-page .helptext { display: block; font-size: 11px; opacity: .7; }
+.form-page ul.errorlist { color: #ff6b6b; padding-left: 18px; }
+.form-page input[type="text"], .form-page input[type="email"], .form-page input[type="password"] {
+    width: 100%; padding: 8px; background: rgba(11,12,16,.6); border: 1px solid var(--accent-green); color: var(--accent-cyan);
+}
+
+/* Карточки товаров и новостей */
+.product-card { display: flex; gap: 20px; }
+.product-card img { width: 150px; height: 150px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+.product-card p { background: none !important; text-indent: 0 !important; padding: 0 !important; }
+.price { color: gold; font-weight: bold; font-size: 1.2em; }
+.news-card h3 { margin-top: 0; }
+.news-date { color: var(--accent-green); font-size: 13px; }
+.stat-tile { text-align: center; }
+.stat-tile .stat-value { font-size: 2.4em; color: gold; font-weight: bold; }
+.about-org { display: flex; gap: 25px; align-items: center; }
+.about-org img { width: 110px; height: 110px; border-radius: 12px; border: 2px solid var(--accent-cyan); }
+.about-org p { text-indent: 0 !important; }
+@media (max-width: 600px) {
+    .product-card, .about-org { flex-direction: column; }
+}

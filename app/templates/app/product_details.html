@@ -19,6 +19,8 @@
                 {{ product.full_description|linebreaksbr }}
             </div>
             
+            {% include 'app/buy_button.html' %}
+
             <div class="nav-link" style="margin-top: 30px;">
                 <a href="{% url 'category_items' category_id=product.category.id %}" class="button-link">← Назад к списку</a>
             </div>

@@ -1,0 +1,15 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block form-page">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+            <button type="submit" class="button-link btn-gold">{{ submit }}</button>
+            <a href="{% url cancel_url %}" class="button-link">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

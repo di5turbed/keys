@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block form-page">
+    <form method="post">
+        {% csrf_token %}
+        <div class="table-scroll">
+        <table class="shop-table">
+            <thead><tr><th>Товар</th><th>Цена</th><th>Количество (0 — удалить)</th></tr></thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.price }} ₽</td>
+                    <td><input type="number" name="qty_{{ item.id }}" value="{{ item.quantity }}" min="0" max="99" class="qty-input"></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <div style="margin-top: 20px;">{{ form.as_p }}</div>
+        <div class="actions">
+            <button type="submit" class="button-link btn-gold">Сохранить изменения</button>
+            <a href="{% url 'order_detail' order_id=order.id %}" class="button-link">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

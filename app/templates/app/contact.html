@@ -1,20 +1,39 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+<h1 class="header">{{ title }}</h1>
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
-
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
-
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <h3 style="color: var(--accent-cyan); margin-top: 0;">ООО «КиберКлючи»</h3>
+            <address>
+                <strong>Адрес:</strong><br />
+                г. Москва, ул. Цифровая, д. 42, офис 101<br />
+                Пн–Пт 9:00–20:00, онлайн-поддержка 24/7
+            </address>
+            <address>
+                <strong>Телефоны:</strong><br />
+                +7 (495) 123-45-67 — отдел продаж<br />
+                +7 (800) 555-35-35 — техподдержка (бесплатно по России)
+            </address>
+            <address>
+                <strong>E-mail:</strong><br />
+                Поддержка: <a href="mailto:support@cyberkeys.example">support@cyberkeys.example</a><br />
+                Сотрудничество: <a href="mailto:partners@cyberkeys.example">partners@cyberkeys.example</a>
+            </address>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <h3 style="color: var(--accent-cyan); margin-top: 0;">Разработчик сайта</h3>
+            <address>
+                Курсовой проект по дисциплине «Веб-программирование»<br />
+                Разработчик: студент группы ____ , Фамилия Имя Отчество<br />
+                Технологии: Python, Django, Bootstrap, SQLite<br />
+                E-mail: <a href="mailto:developer@cyberkeys.example">developer@cyberkeys.example</a>
+            </address>
+        </div>
+    </div>
+</div>
 {% endblock %}

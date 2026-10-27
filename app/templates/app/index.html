@@ -48,14 +48,37 @@
 </div>
 
 <div class="main-block">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="header">Добро пожаловать в КиберКлючи</h1>
-            <div class="block">
-                <p id="p1">Мы предоставляем только лицензионные ключи с гарантией активации.</p>
-                <p>Присоединяйтесь к тысячам довольных игроков по всему миру!</p>
+    <h1 class="header">Добро пожаловать в КиберКлючи</h1>
+    <div class="block about-org">
+        <img src="{% static 'app/content/logo.jpg' %}" alt="Логотип КиберКлючи" />
+        <div>
+            <h2 style="color: var(--accent-cyan); margin-top: 0;">ООО «КиберКлючи»</h2>
+            <p>Интернет-магазин цифровых товаров: лицензионные ключи для игр, подписки и программное обеспечение.
+               Ключ приходит на e-mail сразу после обработки заказа, на каждую активацию действует гарантия.</p>
+            <p>Присоединяйтесь к тысячам довольных игроков по всему миру!</p>
+            <div class="actions">
+                <a class="button-link btn-gold" href="{% url 'catalog' %}">Перейти в каталог</a>
+                {% if not user.is_authenticated %}
+                    <a class="button-link" href="{% url 'registration' %}">Стать клиентом</a>
+                {% endif %}
             </div>
         </div>
     </div>
+
+    <h2 class="header">Последние новости</h2>
+    <div class="row">
+        {% for post in latest_news %}
+        <div class="col-md-4">
+            <div class="block news-card">
+                <h3><a href="{% url 'blogpost' parametr=post.id %}">{{ post.title }}</a></h3>
+                <div class="news-date">{{ post.posted|date:"d.m.Y" }}</div>
+                <p style="text-indent: 0;">{{ post.description|truncatewords:25 }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-12"><p>Новостей пока нет.</p></div>
+        {% endfor %}
+    </div>
+    <div style="text-align: center;"><a class="button-link" href="{% url 'blog' %}">Все новости →</a></div>
 </div>
 {% endblock %}

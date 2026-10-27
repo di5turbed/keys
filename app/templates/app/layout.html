@@ -35,25 +35,39 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'home' %}">Главная</a></li>
-                    <li><a href="{% url 'about' %}">О нас</a></li>
-                    <li><a href="{% url 'contact' %}">Контакты</a></li>
-                    <li><a href="{% url 'videopost' %}">Видео</a></li>
-                    {% if user.is_superuser %}
-                        <li><a href="{% url 'newpost' %}">Добавить пост</a></li>
-                    {% endif %}
-                    <li><a href="{% url 'blog' %}">Блог</a></li>
                     <li><a href="{% url 'catalog' %}">Каталог</a></li>
-                    {% if user.is_superuser %}
+                    <li><a href="{% url 'blog' %}">Новости</a></li>
+                    <li><a href="{% url 'contact' %}">Контакты</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ещё <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'about' %}">О нас</a></li>
+                            <li><a href="{% url 'videopost' %}">Видео</a></li>
+                            <li><a href="{% url 'pool' %}">Обратная связь</a></li>
+                            <li><a href="{% url 'links' %}">Полезные ссылки</a></li>
+                        </ul>
+                    </li>
+                    {% if is_client %}
+                        <li><a href="{% url 'cart' %}">Корзина{% if cart_count %} <span class="badge cart-badge">{{ cart_count }}</span>{% endif %}</a></li>
+                        <li><a href="{% url 'my_orders' %}">Мои заказы</a></li>
+                    {% endif %}
+                    {% if is_manager %}
+                        <li><a href="{% url 'manager_orders' %}">Заказы</a></li>
+                    {% endif %}
+                    {% if is_admin %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Админ-панель <b class="caret"></b></a>
-                            <ul class="dropdown-menu" style="background: var(--panel-bg);">
-                                <li><a href="{% url 'new_category' %}" style="color: var(--accent-cyan);">+ Добавить категорию</a></li>
-                                <li><a href="{% url 'new_product' %}" style="color: var(--accent-cyan);">+ Добавить товар</a></li>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'admin_panel' %}">Обзор</a></li>
+                                <li><a href="{% url 'admin_categories' %}">Категории</a></li>
+                                <li><a href="{% url 'admin_products' %}">Товары</a></li>
+                                <li><a href="{% url 'admin_news' %}">Новости</a></li>
+                                <li><a href="{% url 'admin_users' %}">Пользователи</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'admin:index' %}">Django admin</a></li>
                             </ul>
                         </li>
                     {% endif %}
-                    <li><a href="{% url 'pool' %}">Обратная связь</a></li>
-                    <li><a href="{% url 'links' %}">Полезные ссылки</a></li>
                     {% if not user.is_authenticated %}
                         <li><a href="{% url 'registration' %}">Регистрация</a></li>
                     {% endif %}
@@ -64,10 +78,13 @@
     </div>
 
     <div class="container body-content">
+        {% for message in messages %}
+            <div class="site-message site-message-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
         {% block content %}{% endblock %}
         <hr/>
         <footer>
-            <p>&copy; {{ year }} - КиберКлючи | Магазин цифровых товаров</p>
+            <p>&copy; {{ year }} - КиберКлючи | Магазин цифровых товаров · <a href="{% url 'contact' %}">Контакты</a></p>
         </footer>
     </div>
 

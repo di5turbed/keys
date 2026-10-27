@@ -5,7 +5,7 @@
 
 <ul class="nav navbar-nav navbar-right">
     <li>
-        <span style="display: block; padding: 15px; color: var(--accent-green);">Привет, {{ user.username }}!</span>
+        <span style="display: block; padding: 15px; color: var(--accent-green);">Привет, {{ user.username }}! <small class="role-tag">{{ role_name }}</small></span>
     </li>
     <li>
         <a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a>

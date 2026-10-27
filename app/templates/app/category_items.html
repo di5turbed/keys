@@ -1,20 +1,25 @@
 {% extends "app/layout.html" %}
 {% block content %}
+<p><a href="{% url 'catalog' %}">Каталог</a> / {{ category.name }}</p>
 <h1 class="header">{{ category.name }}</h1>
+<p style="text-align: center;">{{ category.description }}</p>
 <div class="row">
     {% for item in items %}
     <div class="col-md-6">
-        <div class="block" style="margin-bottom: 20px; display: flex; gap: 20px;">
-            <img src="{{ item.image.url }}" style="width: 150px; border-radius: 5px;">
+        <div class="block product-card">
+            <a href="{% url 'product_details' product_id=item.id %}"><img src="{{ item.image.url }}" alt="{{ item.name }}"></a>
             <div>
                 <a href="{% url 'product_details' product_id=item.id %}">
                     <h3 style="color: var(--accent-cyan); margin-top: 0;">{{ item.name }}</h3>
                 </a>
-                <p style="background: none; text-indent: 0; padding: 0;">{{ item.short_description }}</p>
-                <div style="color: gold; font-weight: bold; font-size: 1.2em;">{{ item.price }} ₽</div>
+                <p>{{ item.short_description }}</p>
+                <div class="price">{{ item.price }} ₽</div>
+                {% include 'app/buy_button.html' with product=item %}
             </div>
         </div>
     </div>
+    {% empty %}
+    <div class="col-md-12"><p>В этой категории пока нет товаров.</p></div>
     {% endfor %}
 </div>
 {% endblock %}

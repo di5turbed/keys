@@ -6,7 +6,7 @@
         <h2 class="header">Инициализация</h2>
         <p id="p1" style="text-align: center; margin-bottom: 25px;">Введите учетные данные для доступа к библиотеке</p>
         
-        <form action="." method="post">
+        <form method="post">
             {% csrf_token %}
             
             <div class="form-group">
@@ -20,7 +20,7 @@
             </div>
             
             <div class="nav-link" style="margin-top: 30px;">
-                <input type="hidden" name="next" value="/" />
+                <input type="hidden" name="next" value="{{ next|default:'/' }}" />
                 <button type="submit" class="button-link" style="width: 100%; border: none;">Войти</button>
             </div>
 

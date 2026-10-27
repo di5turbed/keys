@@ -1,0 +1,9 @@
+<p style="text-indent: 0;">
+    <strong>Клиент:</strong> {{ order.user.username }}{% if order.user.first_name %} ({{ order.user.first_name }}){% endif %}<br>
+    <strong>Дата:</strong> {{ order.created|date:"d.m.Y H:i" }}<br>
+    <strong>E-mail:</strong> {{ order.email }}<br>
+    <strong>Статус:</strong> <span class="status status-{{ order.status }}">{{ order.get_status_display }}</span>
+</p>
+{% if order.comment %}<p style="text-indent: 0;"><strong>Комментарий клиента:</strong> {{ order.comment|linebreaksbr }}</p>{% endif %}
+{% if order.manager_note %}<p style="text-indent: 0;"><strong>Примечание менеджера:</strong> {{ order.manager_note|linebreaksbr }}</p>{% endif %}
+{% include 'app/order_items.html' with items=order.items.all total=order.total %}

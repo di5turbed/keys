@@ -1,0 +1,37 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    <div class="actions" style="margin-top: 0; margin-bottom: 20px;">
+        <a href="{% url 'manager_orders' %}" class="button-link btn-sm-link{% if not status %} btn-gold{% endif %}">Все</a>
+        {% for value, label in statuses %}
+            <a href="?status={{ value }}" class="button-link btn-sm-link{% if status == value %} btn-gold{% endif %}">{{ label }}</a>
+        {% endfor %}
+    </div>
+    {% if orders %}
+    <div class="table-scroll">
+    <table class="shop-table">
+        <thead>
+            <tr><th>№</th><th>Дата</th><th>Клиент</th><th>Товары</th><th>Сумма</th><th>Статус</th><th></th></tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.created|date:"d.m.Y H:i" }}</td>
+                <td>{{ order.user.username }}<br><small>{{ order.email }}</small></td>
+                <td>{% for item in order.items.all %}{{ item.product.name }} ×{{ item.quantity }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                <td>{{ order.total }} ₽</td>
+                <td><span class="status status-{{ order.status }}">{{ order.get_status_display }}</span></td>
+                <td><a href="{% url 'manager_order' order_id=order.id %}" class="button-link btn-sm-link btn-gold">Обработать</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% else %}
+        <p>Заказов нет.</p>
+    {% endif %}
+</div>
+{% endblock %}

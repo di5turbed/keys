@@ -1,0 +1,24 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="row">
+    <div class="col-md-7">
+        <div class="block">
+            <h3 style="color: var(--accent-cyan); margin-top: 0;">Состав заказа</h3>
+            {% include 'app/order_items.html' %}
+            <a href="{% url 'cart' %}">← Изменить корзину</a>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="block form-page">
+            <h3 style="color: var(--accent-cyan); margin-top: 0;">Данные для получения ключей</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="button-link btn-gold" style="width: 100%;">Подтвердить заказ</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

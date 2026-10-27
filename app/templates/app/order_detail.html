@@ -1,0 +1,20 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    {% include 'app/order_info.html' %}
+    <div class="actions">
+        {% if is_client %}
+            {% if order.is_editable %}
+                <a href="{% url 'order_edit' order_id=order.id %}" class="button-link">Изменить заказ</a>
+                <a href="{% url 'order_delete' order_id=order.id %}" class="button-link btn-danger-link">Удалить заказ</a>
+            {% endif %}
+            <a href="{% url 'my_orders' %}" class="button-link">← Мои заказы</a>
+        {% elif is_manager %}
+            <a href="{% url 'manager_order' order_id=order.id %}" class="button-link btn-gold">Обработать</a>
+            <a href="{% url 'manager_orders' %}" class="button-link">← Все заказы</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

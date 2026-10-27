@@ -1,0 +1,15 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block" style="text-align: center;">
+    <p style="text-indent: 0;">Вы действительно хотите удалить «{{ object_name }}»? Это действие нельзя отменить.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions" style="justify-content: center;">
+            <button type="submit" class="button-link btn-danger-link">Да, удалить</button>
+            <a href="{% url cancel_url %}" class="button-link">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

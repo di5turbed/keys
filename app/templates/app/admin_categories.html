@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1 class="header">{{ title }}</h1>
+<div class="block">
+    <a href="{% url 'new_category' %}" class="button-link btn-gold">+ Добавить категорию</a>
+    <div class="table-scroll" style="margin-top: 20px;">
+    <table class="shop-table">
+        <thead><tr><th>Название</th><th>Описание</th><th>Товаров</th><th></th></tr></thead>
+        <tbody>
+        {% for cat in categories %}
+            <tr>
+                <td><a href="{% url 'category_items' category_id=cat.id %}">{{ cat.name }}</a></td>
+                <td>{{ cat.description|truncatewords:12 }}</td>
+                <td>{{ cat.product_set.count }}</td>
+                <td style="white-space: nowrap;">
+                    <a href="{% url 'category_edit' category_id=cat.id %}" class="button-link btn-sm-link">Изменить</a>
+                    <a href="{% url 'category_delete' category_id=cat.id %}" class="button-link btn-sm-link btn-danger-link">Удалить</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4">Категорий нет.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}
